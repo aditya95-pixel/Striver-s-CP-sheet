@@ -38,3 +38,38 @@ int main(){
     cout<<x<<endl;
 }
 ```
+
+### 2. Chewbaсca and Number
+
+Luke Skywalker gave Chewbacca an integer number x. Chewbacca isn't good at numbers but he loves inverting digits in them. Inverting digit t means replacing it with digit 9 - t.
+
+Help Chewbacca to transform the initial number x to the minimum possible positive number by inverting some (possibly, zero) digits. The decimal representation of the final number shouldn't start with a zero.
+
+Input
+The first line contains a single integer x (1 ≤ x ≤ 1018) — the number that Luke Skywalker gave to Chewbacca.
+
+Output
+Print the minimum possible positive number that Chewbacca can obtain after inverting some digits. The number shouldn't contain leading zeroes.
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    string x,x1;
+    cin>>x;
+    for(int i=0;i<x.size();i++){
+        int dig=x[i]-'0';
+        if(dig==9 && i==0)
+        {
+            x1+=(dig+'0');
+            continue;
+        }
+        if(dig>9-dig){
+            x1+=(9-dig+'0');
+        }else{
+            x1+=(dig+'0');
+        }
+    }
+    cout<<x1<<endl;
+}
+```
