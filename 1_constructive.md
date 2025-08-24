@@ -673,7 +673,7 @@ int main(){
 }
 ```
 
-### 18 Helpful Maths
+### 19 Helpful Maths
 
 Xenia the beginner mathematician is a third year student at elementary school. She is now learning the addition operation.
 
@@ -701,5 +701,60 @@ int main(){
     for(int i=0;i<s.size();i+=2)
     s[i]=v[k++];
     cout<<s<<endl;
+}
+```
+
+### 20 C+=
+
+Leo has developed a new programming language C+=. In C+=, integer variables can only be changed with a "+=" operation that adds the right-hand side value to the left-hand side variable. For example, performing "a += b" when a = 2
+, b = 3
+ changes the value of a to 5
+ (the value of b does not change).
+
+In a prototype program Leo has two integer variables a and b, initialized with some positive values. He can perform any number of operations "a += b" or "b += a". Leo wants to test handling large integers, so he wants to make the value of either a or b strictly greater than a given value n
+. What is the smallest number of operations he has to perform?
+
+Input
+The first line contains a single integer T
+ (1≤T≤100
+) — the number of test cases.
+
+Each of the following T
+ lines describes a single test case, and contains three integers a,b,n
+ (1≤a,b≤n≤109
+) — initial values of a and b, and the value one of the variables has to exceed, respectively.
+
+Output
+For each test case print a single integer — the smallest number of operations needed. Separate answers with line breaks.
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int a,b,n;
+        cin>>a>>b>>n;
+        if(a>n || b>n)
+        cout<<0<<endl;
+        else
+        {
+            int cnt=0;
+            priority_queue<int,vector<int>>pq;
+            pq.push(a);
+            pq.push(b);
+            while(pq.top()<=n){
+                int num1=pq.top();
+                pq.pop();
+                int num2=pq.top();
+                pq.pop();
+                pq.push(max(num1,num2));
+                pq.push(num1+num2);
+                cnt++;
+            }
+            cout<<cnt<<endl;
+        }
+    }
 }
 ```
