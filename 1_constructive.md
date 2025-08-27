@@ -758,3 +758,38 @@ int main(){
     }
 }
 ```
+
+### 21 Maximum Increase
+
+You are given array consisting of n integers. Your task is to find the maximum length of an increasing subarray of the given array.
+
+A subarray is the sequence of consecutive elements of the array. Subarray is called increasing if each element of this subarray strictly greater than previous.
+
+Input
+The first line contains single positive integer n (1 ≤ n ≤ 105) — the number of integers.
+
+The second line contains n positive integers a1, a2, ..., an (1 ≤ ai ≤ 109).
+
+Output
+Print the maximum length of an increasing subarray of the given array.
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    vector<int>a(n);
+    for(auto &i:a)
+    cin>>i;
+    int temp=1,maxlen=1;
+    for(int i=1;i<n;i++){
+        if(a[i-1]<a[i])
+            temp++;
+        else    
+            temp=1;
+        maxlen=max(maxlen,temp);
+    }
+    cout<<maxlen<<endl;
+}
+```
