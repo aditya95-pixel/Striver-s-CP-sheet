@@ -1447,7 +1447,6 @@ int main(){
     cin>>n>>m;
     if(m%n==0)
     {
-        int num_divisors=0;
         if(m/n==1)
         cout<<0<<endl;
         else{
