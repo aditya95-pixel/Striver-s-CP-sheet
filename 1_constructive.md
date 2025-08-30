@@ -1834,3 +1834,76 @@ int32_t main(){
    cout<<res;
 }
 ```
+
+### 41 City Day
+
+For years, the Day of city N was held in the most rainy day of summer. New mayor decided to break this tradition and select a not-so-rainy day for the celebration. The mayor knows the weather forecast for the n
+ days of summer. On the i
+-th day, ai
+ millimeters of rain will fall. All values ai
+ are distinct.
+
+The mayor knows that citizens will watch the weather x
+ days before the celebration and y
+ days after. Because of that, he says that a day d
+ is not-so-rainy if ad
+ is smaller than rain amounts at each of x
+ days before day d
+ and and each of y
+ days after day d
+. In other words, ad<aj
+ should hold for all d−x≤j<d
+ and d<j≤d+y
+. Citizens only watch the weather during summer, so we only consider such j
+ that 1≤j≤n
+.
+
+Help mayor find the earliest not-so-rainy day of summer.
+
+Input
+The first line contains three integers n
+, x
+ and y
+ (1≤n≤100000
+, 0≤x,y≤7
+) — the number of days in summer, the number of days citizens watch the weather before the celebration and the number of days they do that after.
+
+The second line contains n
+ distinct integers a1
+, a2
+, ..., an
+ (1≤ai≤109
+), where ai
+ denotes the rain amount on the i
+-th day.
+
+Output
+Print a single integer — the index of the earliest not-so-rainy day of summer. We can show that the answer always exists.
+
+```cpp
+#include<bits/stdc++.h>
+#define int long long 
+using namespace std;
+int32_t main(){
+    int n,x,y;
+    cin>>n>>x>>y;
+    vector<int>a(n);
+    for(auto &ele:a)
+    cin>>ele;
+    for(int i=0;i<n;i++){
+        int idx1=i-1;
+        int mino=INT_MAX;
+        while(idx1>=0 && idx1>=i-x)
+            mino=min(mino,a[idx1--]);
+        mino=min(mino,a[i]);
+        idx1=i+1; 
+        while(idx1<n && idx1<=i+y)
+            mino=min(mino,a[idx1++]);
+        if(mino==a[i])
+        {
+            cout<<i+1<<endl;
+            return 0;
+        }    
+    }
+}
+```
