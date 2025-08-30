@@ -1978,3 +1978,46 @@ int32_t main(){
     cout<<"NO\n";
 }
 ```
+
+### 43 Lucky Sum of Digits
+
+Petya loves lucky numbers. We all know that lucky numbers are the positive integers whose decimal representations contain only the lucky digits 4 and 7. For example, numbers 47, 744, 4 are lucky and 5, 17, 467 are not.
+
+Petya wonders eagerly what minimum lucky number has the sum of digits equal to n. Help him cope with the task.
+
+Input
+The single line contains an integer n (1 ≤ n ≤ 106) — the sum of digits of the required lucky number.
+
+Output
+Print on the single line the result — the minimum lucky number, whose sum of digits equals n. If such number does not exist, print -1.
+
+```cpp
+#include<bits/stdc++.h>
+#define int long long 
+using namespace std;
+int32_t main(){
+    int n;
+    cin>>n;
+    int max4=n/4,max7=n/7,res4,res7,cnt_digit=INT_MAX;
+    bool chk=false;
+    for(int i=0;i<=max4;i++){
+        for(int j=0;j<=max7;j++){
+            if((i*4+j*7)==n){
+                res4=i;
+                res7=j;
+                chk=true;
+                break;
+            }
+        }
+        if(chk)
+        break;
+    }
+    if(chk){
+        for(int i=0;i<res4;i++)
+        cout<<4;
+        for(int i=0;i<res7;i++)
+        cout<<7;
+    }else
+    cout<<-1;
+}
+```
