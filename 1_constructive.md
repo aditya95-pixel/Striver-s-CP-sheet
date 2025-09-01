@@ -2397,3 +2397,100 @@ int32_t main(){
     cout<<"0"<<tmid/60<<":0"<<tmid%60;
 }
 ```
+
+### 48 Balanced Rating Changes
+
+Another Codeforces Round has just finished! It has gathered n
+ participants, and according to the results, the expected rating change of participant i
+ is ai
+. These rating changes are perfectly balanced — their sum is equal to 0
+.
+
+Unfortunately, due to minor technical glitches, the round is declared semi-rated. It means that all rating changes must be divided by two.
+
+There are two conditions though:
+
+For each participant i
+, their modified rating change bi
+ must be integer, and as close to ai2
+ as possible. It means that either bi=⌊ai2⌋
+ or bi=⌈ai2⌉
+. In particular, if ai
+ is even, bi=ai2
+. Here ⌊x⌋
+ denotes rounding down to the largest integer not greater than x
+, and ⌈x⌉
+ denotes rounding up to the smallest integer not smaller than x
+.
+The modified rating changes must be perfectly balanced — their sum must be equal to 0
+.
+Can you help with that?
+
+Input
+The first line contains a single integer n
+ (2≤n≤13845
+), denoting the number of participants.
+
+Each of the next n
+ lines contains a single integer ai
+ (−336≤ai≤1164
+), denoting the rating change of the i
+-th participant.
+
+The sum of all ai
+ is equal to 0
+.
+
+Output
+Output n
+ integers bi
+, each denoting the modified rating change of the i
+-th participant in order of input.
+
+For any i
+, it must be true that either bi=⌊ai2⌋
+ or bi=⌈ai2⌉
+. The sum of all bi
+ must be equal to 0
+.
+
+If there are multiple solutions, print any. We can show that a solution exists for any valid input.
+
+```cpp
+#include<bits/stdc++.h>
+#define int long long 
+using namespace std;
+int32_t main(){
+   int n;
+   cin>>n;
+   vector<int>a(n),b(n);
+   bool chk=true;
+   for(int i=0;i<n;i++){
+      cin>>a[i];
+      if(a[i]%2==0)
+      b[i]=a[i]/2;
+      else{
+         if(a[i]>0 && !chk)
+         {
+            chk=true;
+            b[i]=a[i]/2;
+         }
+         else if(a[i]>0 && chk)
+         {
+            chk=false;
+            b[i]=a[i]/2+1;
+         }
+         else if(a[i]<0 && chk){
+            chk=false;
+            b[i]=a[i]/2;
+         }
+         else if(a[i]<0 && !chk){
+            chk=true;
+            b[i]=a[i]/2-1;
+         }
+      }
+   }
+   for(auto ele:b)
+   cout<<ele<<endl;
+}
+```
